@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Pokebola-pokeball-png-0.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+                
+</head>
+<body>
+    <h1>Busca un Pokémon</h1>
+    <form method="POST" id="form-busqueda">
+        <input type="text" name="pokemon" id="input-pokemon" placeholder="Ingresa el nombre de un Pokémon">
+        <button type="submit">Buscar</button>
+    </form>
+    <form method="POST" id="form-busqueda">
+        <select name="type_filter" id="tipos-pokemon">
+            <option value="">Todos los tipos</option> <
+            <option value="bug">Bug (Bicho)</option>
+            <option value="dark">Dark (Siniestro)</option>
+            <option value="dragon">Dragon (Dragón)</option>
+            <option value="electric">Electric (Eléctrico)</option>
+            <option value="fairy">Fairy (Hada)</option>
+            <option value="fighting">Fighting (Lucha)</option>
+            <option value="fire">Fire (Fuego)</option>
+            <option value="flying">Flying (Volador)</option>
+            <option value="ghost">Ghost (Fantasma)</option>
+            <option value="grass">Grass (Planta)</option>
+            <option value="ground">Ground (Tierra)</option>
+            <option value="ice">Ice (Hielo)</option>
+            <option value="normal">Normal</option>
+            <option value="poison">Poison (Veneno)</option>
+            <option value="psychic">Psychic (Psíquico)</option>
+            <option value="rock">Rock (Roca)</option>
+            <option value="steel">Steel (Acero)</option>
+            <option value="water">Water (Agua)</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+
+<!--No son funciones de Python puras, pero es "lógica de plantilla":
+
+Condicionales: Deciden qué mostrar. Si no hay búsqueda, no muestra la tarjeta; si hay error, muestra el mensaje en rojo.
+
+Filtros de Jinja2: * capitalize: Pone la primera letra en mayúscula.
+
+join: Convierte una lista de Python en un texto bonito separado por comas.
+
+-->
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>  <!--Si la variable error existe (por ejemplo, si el Pokémon no se encontró), muestra un mensaje en rojo. (Esto es una condición de Jinja2, el motor de plantillas de Flask.)-->
+    {% endif %}
+
+    <div class="container">
+        {% if pokemon %}
+        <div class="card type-{{ pokemon.types[0] }}">
+            <h2>{{ pokemon.name | capitalize }}</h2>
+            <img src="{{ pokemon.sprite }}" alt="{{ pokemon.name }}">
+            <img src="{{ pokemon.sprite_back }}" alt="{{ pokemon.name }}">
+            <h3>Tipos:</h3>
+                <div class="types-container">
+                    {% for type in pokemon.types %}
+                        <div class="type-badge">
+                            <img src="https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/{{ type }}.svg" 
+                                alt="{{ type }}" 
+                                style="width: 20px; height: 20px; vertical-align: middle;">
+                            <span>{{ type | capitalize }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="moves-container">
+                    <strong>Movimientos:</strong> 
+                    <div class="moves-list">
+                        {% for move in pokemon.moves[:10] %}
+                            <span class="move-tag">{{ move | replace('-', ' ') | capitalize }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+        </div>
+        {% endif %}
+
+        {% if tipo_data %}
+        <div class="lista-tipo">
+            <h2>Pokémon de tipo: {{ tipo_data.nombre_tipo | capitalize }}</h2>
+            <ul>
+                {% for p in tipo_data.pokemon_list %}
+                    <li class="type-{{ tipo_data.nombre_tipo }}"
+                        onclick="buscarPokemon('{{ p.name }}')" 
+                        style="cursor: pointer;">
+
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ p.id }}.png" 
+                            alt="{{ p.name }}" style="width: 70px;"> 
+                        <span>{{ p.name | capitalize }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #DC143C;
+                                                
+}
+
+h1{
+    font-family: 'Pokemon Solid', sans-serif;
+    color:#ffcb05;
+    -webkit-text-stroke: 1px blue
+}
+
+input {
+    padding: 8px;
+    font-size: 16px;
+}
+button {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #ffcb05;
+    border: none;
+    cursor: pointer;
+}
+
+img {
+    margin: 10px;
+    width: 150px;
+}
+
+ul{
+    list-style: none;
+}
+
+.card{
+    display: block;
+    box-shadow : 0 0 3px black;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+    background-color: #f2f2f2;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+/*Distintos colores dependiendo del tipo*/
+.type-normal { background: linear-gradient(135deg, #A8A77A 0%, #C6C6A7 100%); color: white; }
+.type-fire { background: linear-gradient(135deg, #EE8130 0%, #F09351 100%); color: white; }
+.type-water { background: linear-gradient(135deg, #6390F0 0%, #82A9F4 100%); color: white; }
+.type-electric { background: linear-gradient(135deg, #F7D02C 0%, #FAE078 100%); color: #333; }
+.type-grass { background: linear-gradient(135deg, #7AC74C 0%, #9BCC7A 100%); color: white; }
+.type-ice { background: linear-gradient(135deg, #96D9D6 0%, #BCE6E6 100%); color: #333; }
+.type-fighting { background: linear-gradient(135deg, #C22E28 0%, #D66D6A 100%); color: white; }
+.type-poison { background: linear-gradient(135deg, #A33EA1 0%, #C183C1 100%); color: white; }
+.type-ground { background: linear-gradient(135deg, #E2BF65 0%, #EBD69D 100%); color: #333; }
+.type-flying { background: linear-gradient(135deg, #A98FF3 0%, #C6B7F5 100%); color: white; }
+.type-psychic { background: linear-gradient(135deg, #F95587 0%, #FA92B2 100%); color: white; }
+.type-bug { background: linear-gradient(135deg, #A6B91A 0%, #C6D16E 100%); color: white; }
+.type-rock { background: linear-gradient(135deg, #B6A136 0%, #D1C17D 100%); color: white; }
+.type-ghost { background: linear-gradient(135deg, #735797 0%, #A292BC 100%); color: white; }
+.type-dragon { background: linear-gradient(135deg, #6F35FC 0%, #A27DFA 100%); color: white; }
+.type-dark { background: linear-gradient(135deg, #705746 0%, #A29288 100%); color: white; }
+.type-steel { background: linear-gradient(135deg, #B7B7CE 0%, #D1D1E0 100%); color: #333; }
+.type-fairy { background: linear-gradient(135deg, #D685AD 0%, #E6B2CC 100%); color: white; }
+.type-stellar { background: linear-gradient(135deg, #40B5A5 0%, #76D7C4 100%); color: white; }
+
+.type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.1); /* Un fondo sutil */
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.type-badge img {
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)); /* Le da relieve al icono */
+    filter: brightness(0) invert(1);
+     /* filter: drop-shadow(0 0 2px white) */
+}
+
+.moves-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.moves-list {
+    display: flex;
+    flex-wrap: wrap; /* Para que bajen a la siguiente línea si no caben */
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.move-tag {
+    background: rgba(255, 255, 255, 0.2); /* Fondo sutil que deja ver el color de la card */
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: #333; /* O white, dependiendo de tu degradado */
+}
+
+.lista-tipo {
+    margin-top: 30px;
+    text-align: center /* Le da relieve al icono */
+}
+.lista-tipo ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Para que se acomoden en varias filas */
+    justify-content: center;
+    gap: 10px;
+}
+.lista-tipo li{
+    display: inline-flex;
+    align-items: center;
+    border-radius: 25px; /* Más redondeado para que parezca una píldora */
+    font-weight: bold;
+    color: white; /* El texto en blanco resalta sobre los degradados */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s; /* Efecto suave al pasar el mouse */
+    cursor: pointer;
+    flex-direction: column; /* Pone la imagen arriba y el nombre abajo */
+    padding: 15px;
+    width: 120px; /* Les da un tamaño uniforme */
+    justify-content: center;
+}
+.lista-tipo li:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.lista-tipo li img {
+    margin-bottom: 10px;
+    transition: filter 0.3s;
+}
+.lista-tipo li span {
+    color: white; /* O el color que resalte sobre tu degradado */
+    font-weight: bold;
+    display: block; /* Asegura que ocupe su propio espacio */
+    margin-top: 5px;
+}
+
+.lista-tipo li {
+    /* ... lo que ya tenías ... */
+    cursor: pointer; /* Cambia la flecha por una manito */
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.lista-tipo li:hover {
+    transform: translateY(-5px); /* Se levanta un poquito */
+    filter: brightness(1.1); /* Brilla un poco más */
+}
